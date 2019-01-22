@@ -28,19 +28,19 @@
     /************************************************************************************
      *              FOLLOW AND UNFOLLOW ARTICLE PAGE JS
      ************************************************************************************/
-    // $('.followArticleBtn').followBlog({
-    //     onSuccess: function (data, obj) {
-    //        ($(obj).data('status') === 'follow') ? $(obj).html("Follow +") : $(obj).html("Following -");
-    //         var message = ($(obj).data('status') === 'follow') ? 'Unfollow' : 'Follow';
-    //         $.fn.General_ShowNotification({message: message + " blog successfully."});                 
-    //     },
-    //     beforeSend: function (obj) {
-    //         $(obj).html('please wait...');
-    //     },
-    //     onError: function (obj, errorMessage) {
-    //         $().General_ShowErrorMessage({message: errorMessage});
-    //     }
-    // });
+    $('.followArticleBtn').followArticle({
+        onSuccess: function (data, obj) {
+           ($(obj).data('status') === 'follow') ? $(obj).html("Follow +") : $(obj).html("Following -");
+            var message = ($(obj).data('status') === 'follow') ? 'Unpicked' : 'picked';
+            $.fn.General_ShowNotification({message: message + " successfully."});                 
+        },
+        beforeSend: function (obj) {
+            $(obj).html('please wait...');
+        },
+        onError: function (obj, errorMessage) {
+            $().General_ShowErrorMessage({message: errorMessage});
+        }
+    });
     
     /************************************************************************************
      *              FOLLOW AND UNFOLLOW USER PROFILE PAGE JS
