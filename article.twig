@@ -36,7 +36,7 @@
 
         {% if articleImg %} 
 
-         <section class="" style="margin-top:40px;">
+         <section class="" style="margin-top:40px;text-align: center;">
              <img src="{{articleImg}}" style="max-height:1000px;max-width:80%;">
         </section><!--page-hero-->
         {% endif %}
@@ -56,39 +56,6 @@
                     <div class="row">
                         <div class="col-md-offset-2 col-md-8">
                             <div class="content-wrapper">
-                                <div class="content-block-top">
-                                    <time>{{ article.publishedDate }}</time>
-                                    <h1>{{ quotes.smarten(article.title) }}</h1>
-
-                                    <p class="author">{{ article.createdBy['displayName'] }}</p>
-
-                                    {% if article.createdBy['bio'] %} 
-                                        <p class="bio">{{ article.createdBy['bio'] }}</p>
-                                    {% endif %}
-
-                                    {% if not _User.isGuest() %}
-                                        <a href="{{article.editUrl}}" target="_blank" class="" style="margin-left:20px;padding-top:5px">Edit article</a>
-                                    {% endif %}
-
-                                    <div class="time_to_read">
-                                        {% set readtime = 3 %}
-                                        {% if article.readingTime > 3 %}
-                                            {% set readtime = 4 %}
-                                        {% endif %}
-                                        {% if article.readingTime > 4 %}
-                                            {% set readtime = 7 %}
-                                        {% endif %}
-                                        {% if article.readingTime > 7 %}
-                                            {% set readtime = 10 %}
-                                        {% endif %}
-
-                                        <img src="{{networkData.templatePath}}/static/images/reading_time/{{readtime}}_min.svg" />
-                                        <p>{{article.readingTime}} minute read</p>
-                                    </div>
-
-
-
-                                </div><!--content-block-top-->
 
                                 <div class="article_content">
                                     <p>{{ article.content | preg_replace('/^<p>/', '<p class="lead">') | raw }}</p>
@@ -99,30 +66,6 @@
                         </div><!-- .col-md-8-->
                     </div>
                 </div><!-- .page-content-->
-
-
-                <div class="related-articles">
-                    <div class="row">
-            
-                        <div class="col-sm-12">
-
-                            <section class="row">
-                                <h2>Related articles</h2>
-
-                                {% set popularArticles = _Article.getPopularArticles({ limit: 4, excludeArticleIds : article.id, sortBy : "VIEWS" }) %}
-                                {% if popularArticles|length > 0 %}
-                                    {% for article in popularArticles %}
-                                        {{this.render('partials/_single-article.twig', {article: article, containerClass: 'col-sm-6 col-md-3 card-sm s110x110'}) | raw}}
-                                    {% endfor %}
-                                {% else %}
-                                    <p class="nodata text-center">No data found.</p>
-                                {% endif %}
-                            </section>
-
-                        </div><!-- .col-md-12-->
-                    </div><!-- .row-->
-
-                </div>
 
             </div><!--container-->
         </article>
