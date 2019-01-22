@@ -53,7 +53,7 @@
     {% set figureClass =  article.featuredMedia['type'] == 'video' ? 'video' : '' %}
     {% set followButtonClass = '' %}
     {% set followBtnStatus = "follow" %}
-    {% if not _User.isGuest() and _User.isUserFollowing('blog', following.blog['id']) %}
+    {% if not _User.isGuest() and _User.isUserFollowing('article', following.article['id']) %}
         {% set followButtonClass = 'selected' %}
         {% set followBtnStatus = "unfollow" %}
     {% endif %}
