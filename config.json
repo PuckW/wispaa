@@ -1,0 +1,7 @@
+{
+    "module" : {
+        "debug" : {
+           "enabled" : true
+        }
+    }
+}

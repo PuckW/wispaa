@@ -1,2 +1,1 @@
-# wispaa
-wispaa judging platform
+# world_business_form

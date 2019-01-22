@@ -1,0 +1,51 @@
+.card-sm{
+    position:relative;
+    margin-bottom: 45px;
+    @media screen and (max-width: $mobile-break){
+        margin-bottom: 15px;
+    }
+
+    a.card {
+
+        height:250px;
+
+        @media screen and (max-width: $mobile-break){
+            height: 180px;
+            // height: auto;
+            // margin-left:-15px;
+            // margin-right:-15px;
+
+            > article {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+
+                flex-wrap: nowrap;
+                -webkit-flex-wrap: nowrap;
+            }    
+        }
+
+        > article {
+            position:relative;
+            // height: 368px;
+
+            > figure{
+                width: auto;
+                overflow: hidden;
+                height:100%;
+
+                > img{
+                    max-width: 100%;
+                }
+            }
+
+
+
+
+            > .content{
+                    display: none;
+            }
+        }     
+    }
+}
