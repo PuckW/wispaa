@@ -52,20 +52,9 @@
 
 
             <div class="container">
-                <div class="page-content">
-                    <div class="row">
-                        <div class="col-md-offset-2 col-md-8">
-                            <div class="content-wrapper">
-
-                                <div class="article_content">
-                                    <p>{{ article.content | preg_replace('/^<p>/', '<p class="lead">') | raw }}</p>
-                                </div><!-- .content-->
-                            </div><!-- .content-->
-
-
-                        </div><!-- .col-md-8-->
-                    </div>
-                </div><!-- .page-content-->
+                <div class="article_content">
+                    <p>{{ article.content | preg_replace('/^<p>/', '<p class="lead">') | raw }}</p>
+                </div><!-- .content-->
 
             </div><!--container-->
         </article>

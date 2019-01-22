@@ -10048,15 +10048,13 @@ body.channel.hotspots .hotspot, body.section.hotspots .hotspot {
   .card-sm a.card {
     height: 250px; }
     @media screen and (max-width: 620px) {
-      .card-sm a.card {
-        height: 180px; }
-        .card-sm a.card > article {
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          display: flex;
-          flex-wrap: nowrap;
-          -webkit-flex-wrap: nowrap; } }
+      .card-sm a.card > article {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-wrap: nowrap;
+        -webkit-flex-wrap: nowrap; } }
     .card-sm a.card > article {
       position: relative; }
       .card-sm a.card > article > figure {
