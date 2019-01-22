@@ -113,8 +113,6 @@ Card.prototype.screen = function()
 Card.prototype.renderCard = function(card, cardClass)
 {
     var self = this;
-
-
     card['containerClass'] = cardClass;
     card['pinTitle'] = (card.isPinned == 1) ? 'Un-Pin Article' : 'Pin Article';
     card['pinText'] = (card.isPinned == 1) ? 'Un-Pin' : 'Pin';

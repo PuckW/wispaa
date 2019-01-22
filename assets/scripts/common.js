@@ -29,8 +29,8 @@
      ************************************************************************************/
     $('.followArticleBtn').followArticle({
         onSuccess: function (data, obj) {
-           ($(obj).data('status') === 'follow') ? $(obj).html("Follow +") : $(obj).html("Following -");
-            var message = ($(obj).data('status') === 'follow') ? 'Unpicked' : 'picked';
+           ($(obj).data('status') === 'follow') ? $(obj).html("Pick") : $(obj).html("Unpick");
+            var message = ($(obj).data('status') === 'follow') ? 'Unpicked' : 'Picked';
             $.fn.General_ShowNotification({message: message + " successfully."});                 
         },
         beforeSend: function (obj) {

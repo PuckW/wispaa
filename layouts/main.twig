@@ -212,12 +212,12 @@
     
 
 
-    {# {% if not _User.isAdminUser() %}
+    {% if  _User.isGuest() %}
         {{ this.render('/login.twig', {networkData: networkData}) | raw }}
-    {% else %} #}
+    {% else %}
         {{ this.render('partials/_header_navigation.twig', { networkData : networkData }) | raw }}
         {{ content | raw }}
-    {# {% endif %} #}
+    {% endif %}
 
 
     <div class="modal" role="dialog">

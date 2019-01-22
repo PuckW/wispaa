@@ -140,6 +140,7 @@
         return this.each(function () {
             var elem = $(this);
             $(elem).click(function (e) {
+                console.log(elem)
                 e.preventDefault();
 
                 var guid = $(this).data('guid');

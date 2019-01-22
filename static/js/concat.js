@@ -27906,6 +27906,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
         return this.each(function () {
             var elem = $(this);
             $(elem).click(function (e) {
+                console.log(elem)
                 e.preventDefault();
 
                 var guid = $(this).data('guid');
@@ -29218,8 +29219,6 @@ Card.prototype.screen = function()
 Card.prototype.renderCard = function(card, cardClass)
 {
     var self = this;
-
-
     card['containerClass'] = cardClass;
     card['pinTitle'] = (card.isPinned == 1) ? 'Un-Pin Article' : 'Pin Article';
     card['pinText'] = (card.isPinned == 1) ? 'Un-Pin' : 'Pin';
@@ -29613,7 +29612,6 @@ Card.prototype.events = function()
     });
 };
 (function ($) {
-    console.log('common working');
     // $('.video-player').videoPlayer();
     
     // $("img.lazyload").lazyload({
@@ -29644,8 +29642,8 @@ Card.prototype.events = function()
      ************************************************************************************/
     $('.followArticleBtn').followArticle({
         onSuccess: function (data, obj) {
-           ($(obj).data('status') === 'follow') ? $(obj).html("Follow +") : $(obj).html("Following -");
-            var message = ($(obj).data('status') === 'follow') ? 'Unpicked' : 'picked';
+           ($(obj).data('status') === 'follow') ? $(obj).html("Pick") : $(obj).html("Unpick");
+            var message = ($(obj).data('status') === 'follow') ? 'Unpicked' : 'Picked';
             $.fn.General_ShowNotification({message: message + " successfully."});                 
         },
         beforeSend: function (obj) {
