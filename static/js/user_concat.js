@@ -19741,7 +19741,6 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
 
     //Follow/Unfollow a Article
     $.fn.followArticle = function (options) {
-
         var defaults = {
             'onSuccess': function () {},
             'onError': function () {},
@@ -19760,9 +19759,11 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
                 var obj = $(this);
 
                 if(typeof guid === 'undefined' || guid === '') {
+                    console.log('wut guid false');
                     return false;
                 }
                 if(typeof status === 'undefined' || status === '') {
+                    console.log('wut status false');
                     return false;
                 }
                 
@@ -19774,6 +19775,7 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
                     dataType: 'json',
                     data: {guid: guid, _csrf: csrfToken},
                     success: function (data, textStatus, jqXHR) {
+                        console.log('wut success',textStatus);
                         $(obj).data('status', state);
                         $().General_ShowNotification({message: 'Follow article successfully'});
                         if (opts.onSuccess && typeof opts.onSuccess === 'function') {
@@ -19781,16 +19783,19 @@ responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-car
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
+                        console.log('wut error',errorThrown);
                         if (opts.onError && typeof opts.onError === 'function') {
                             opts.onError(obj, jqXHR.responseText);
                         }
                     },
                     beforeSend: function (jqXHR, settings) {
+                        console.log('wut before',settings);
                         if (opts.beforeSend && typeof opts.beforeSend === 'function') {
                             opts.beforeSend(obj);
                         }
                     },
                     complete: function (jqXHR, textStatus) {
+                        console.log('wut complete',textStatus);
                         if (opts.onComplete && typeof opts.onComplete === 'function') {
                             opts.onComplete(obj);
                         }
@@ -21454,7 +21459,7 @@ Card.prototype.events = function()
     });
 };
 (function ($) {
-    
+    console.log('common working');
     // $('.video-player').videoPlayer();
     
     // $("img.lazyload").lazyload({

@@ -1,5 +1,4 @@
 (function ($) {
-    
     // $('.video-player').videoPlayer();
     
     // $("img.lazyload").lazyload({
