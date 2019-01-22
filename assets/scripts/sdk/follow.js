@@ -140,7 +140,6 @@
         return this.each(function () {
             var elem = $(this);
             $(elem).click(function (e) {
-                console.log(elem)
                 e.preventDefault();
 
                 var guid = $(this).data('guid');
@@ -148,11 +147,9 @@
                 var obj = $(this);
 
                 if(typeof guid === 'undefined' || guid === '') {
-                    console.log('wut guid false');
                     return false;
                 }
                 if(typeof status === 'undefined' || status === '') {
-                    console.log('wut status false');
                     return false;
                 }
                 
@@ -164,7 +161,6 @@
                     dataType: 'json',
                     data: {guid: guid, _csrf: csrfToken},
                     success: function (data, textStatus, jqXHR) {
-                        console.log('wut success',textStatus);
                         $(obj).data('status', state);
                         $().General_ShowNotification({message: 'Follow article successfully'});
                         if (opts.onSuccess && typeof opts.onSuccess === 'function') {
@@ -172,19 +168,16 @@
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        console.log('wut error',errorThrown);
                         if (opts.onError && typeof opts.onError === 'function') {
                             opts.onError(obj, jqXHR.responseText);
                         }
                     },
                     beforeSend: function (jqXHR, settings) {
-                        console.log('wut before',settings);
                         if (opts.beforeSend && typeof opts.beforeSend === 'function') {
                             opts.beforeSend(obj);
                         }
                     },
                     complete: function (jqXHR, textStatus) {
-                        console.log('wut complete',textStatus);
                         if (opts.onComplete && typeof opts.onComplete === 'function') {
                             opts.onComplete(obj);
                         }

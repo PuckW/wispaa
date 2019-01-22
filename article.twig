@@ -15,7 +15,7 @@
 {% set authorId = article.createdBy['id'] %}
 {% set authorGUID = article.createdBy['guid'] %}
 
-{% if not _User.isGuset() and _User.isUserFollowing('user', authorId)%}
+{% if not _User.isGuest() and _User.isUserFollowing('user', authorId)%}
     {% set status = 'unfollow' %}
     {% set text = 'Following -' %}
 {% endif %}
