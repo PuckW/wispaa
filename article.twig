@@ -25,11 +25,12 @@
 
 {% set articleImg = false %}
 {% if article.media|length > 0 %}
-    {% set articleImg = _Media.getMediaUrl(article.media[0],imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'none'} ) %}
+    {% set articleImg = article.media[0].path %}
 {% endif %}
 
 {% set profileImg = _Media.getMediaUrl(article.createdBy['media'], 100, 100, {radius: 'max', gravity: 'face', 'crop': 'thumb', type: 'user'}) %}
 
+    {# {{dump(article.media[0])}} #}
 
     <main id="main" class="site-main" role="main">
 
