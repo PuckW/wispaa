@@ -20,12 +20,12 @@
     {% set text = 'Following -' %}
 {% endif %}
 {% set placeholder = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w=1160&h=538' %}
-{% set imgWidth = 1140 %}
-{% set imgHeight = 493 %}
+{% set imgWidth = 900 %}
+{% set imgHeight = 900 %}
 
 {% set articleImg = false %}
 {% if article.media|length > 0 %}
-    {% set articleImg = _Media.getMediaUrl(article.media[0],imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
+    {% set articleImg = _Media.getMediaUrl(article.media[0],imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'none'} ) %}
 {% endif %}
 
 {% set profileImg = _Media.getMediaUrl(article.createdBy['media'], 100, 100, {radius: 'max', gravity: 'face', 'crop': 'thumb', type: 'user'}) %}
@@ -35,47 +35,8 @@
 
         {% if articleImg %} 
 
-         <section class="page-hero">
-             <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject" 
-                  class="featured image-wrapper news__slide slide lazyload-remove" 
-                  data-thumbnail="{{articleImg}}" 
-                  data-original="{{articleImg}}" 
-                  style="background-image: url({{articleImg}})">
-
-                 <meta itemprop="url" content="{{articleImg}}">
-                 <meta itemprop="height" content="{{article.media[0].height}}">
-                 <meta itemprop="width" content="{{article.media[0].width}}">
-                 {% if article.media[0].type == 'video' %} 
-                     {% set mediaUrl = "" %}
-                     {% if article.media[0].isSystemVideo == 'TRUE'%}
-                         {% set mediaUrl = _article.media[0].getMediaVideoUrl(media, 0, 0,{resource_type: 'video', format: 'mp4'})  %}
-                     {% endif %}
-                     <a  href="javascript:void(0)"  
-                         itemprop="video" 
-                         class="video-overlay video-player" 
-                         data-source="{{article.media[0].source}}" 
-                         data-video-id="{{article.media[0].videoId}}" 
-                         data-url="{{mediaUrl}}" 
-                         data-poster="{{articleImg}}" 
-                         data-caption="{{article.title | raw}}">
-
-                        <div class="icons">
-                         
-                            <div class="icon"><i class="fa fa-play"></i></div>
-                        </div>
-                     </a>
-               
-                 {% endif %}
-
-                 <div class="social-share">
-                     <div class="links">
-                         <a href="https://www.facebook.com/sharer/sharer.php?u={{article.url}}&title={{ article.title|url_encode }}" class="btn btn-post"></a
-                         ><a href="https://twitter.com/share?text={{ article.title|url_encode }}&url={{article.url}}" class="btn btn-tweet"></a>
-                     </div>
-                 </div>
-
-
-             </div>
+         <section class="page-hero" style="margin-top:40px;">
+             <img src="{{articleImg}}">
         </section><!--page-hero-->
         {% endif %}
 
