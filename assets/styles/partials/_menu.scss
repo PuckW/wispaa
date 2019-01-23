@@ -43,6 +43,9 @@
     list-style: none;
     padding-left: 0;
     color: #fefefe;
+    @media screen and (min-width: $mmd-break){
+        padding-right: 50px;
+    }
 
     a{
         font-size:  em(14);

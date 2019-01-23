@@ -6875,6 +6875,9 @@ body.no_profile .profile_overlay {
   list-style: none;
   padding-left: 0;
   color: #fefefe; }
+  @media screen and (min-width: 992px) {
+    .sb-custom-menu {
+      padding-right: 50px; } }
   .sb-custom-menu a {
     font-size: 0.875em;
     font-weight: 600;
