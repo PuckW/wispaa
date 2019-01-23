@@ -1,6 +1,8 @@
-{{ set(this, 'title', 'User Articles') }}
+{{ set(this, 'title', 'My Picks') }}
 {% set networkData = _Network.getNetworkData() %}
-
+{% set limit = 150 %}    
+{% set userPosts = _User.getUserFeed({limit: limit, offset: 0}) %}
+{{this.registerJs("Acme.cards = CardController();")}}
 <div class="userProfilePost_page">
     <section class="container">
         <div class="row">
@@ -10,11 +12,11 @@
                 <div id="news-posts">
                     <div class="section__content">
                         <div class="row">
-                            <div id="userArticleContainer" data-total-count="{{totalArticles}}" data-offset="0">
-                               {% if myArticles | length > 0  %}
+                            <div id="userArticleContainer" data-total-count="{{userPosts.Length}}" data-offset="0">
+                               {% if userPosts | length > 0  %}
                                         <div id="owl-thumbnails" class="owl-carousel">
                                             {% set i = 0 %}
-                                            {% for article in myArticles %}  
+                                            {% for article in userPosts %}  
                                                 {{this.render('//partials/_single-article.twig', {article: article, 'position': (i+1), containerClass: 'col-third', cardClass : 'card__news card--local', 'titleTruncateLength': 70}) | raw}}
                                                 {%  set i = i + 1 %}
                                             {% endfor %}
@@ -26,13 +28,6 @@
                         </div>
                     </div>
                 </div>
-                <div id="LoadMoreArticles" class="clearfix" style="clear:both;"></div>
-                {% if totalArticles >= limit%}
-                    <div class="loader">
-                        <span><img width="24" height="24" src="{{networkData.templatePath}}/static/images/loading.svg"></span>
-                        <span class="text">please wait<span class="one">.</span><span class="two">.</span><span class="three">.</span></span>
-                    </div>
-                {% endif %}
             </div>
             <!-- //End User Posts -->
         </div>
