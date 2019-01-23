@@ -7571,6 +7571,14 @@ span.leadsentence {
   flex: 15 0 0;
   -moz-flex: 15 0 0; }
 
+button.followArticleBtn {
+  border: 1px solid black;
+  background-color: #EEEEDD;
+  font-family: "adelle-sans", Helvetica, Arial, sans-serif;
+  font-size: 18px; }
+  button.followArticleBtn.selected {
+    background-color: #EEEEAA; }
+
 .card-rec a.card > article {
   display: -webkit-box;
   display: -webkit-flex;

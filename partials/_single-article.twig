@@ -58,7 +58,7 @@
         {% set followBtnStatus = "unfollow" %}
     {% endif %}
 
-    <div class="{{containerClass}}" data-title="{{ articleTitle | raw }}">
+    <div class="{{containerClass}} {{followBtnStatus}}" data-title="{{ articleTitle | raw }}">
         {% set articleImgSmall = _Media.getMediaUrl(article.featuredMedia,500, 500, {'crop': 'fill', 'gravity': 'faces'} ) %}
         {% set articleImg = _Media.getMediaUrl(article.featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
 
@@ -145,7 +145,7 @@
                     {% if followBtnStatus == 'unfollow' %}
                     {% set pickBtn = 'Unpick' %}
                     {% endif %}
-                <i class="fa ">{{pickBtn}}</i><span class="hide"></span>
+                <p style="margin-bottom:0;">{{pickBtn}}</p><span class="hide"></span>
             </button>
         </a>
     </div><!--swiper slide-->

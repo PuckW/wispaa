@@ -29637,6 +29637,7 @@ Card.prototype.events = function()
         onSuccess: function (data, obj) {
            ($(obj).data('status') === 'follow') ? $(obj).html("Pick") : $(obj).html("Unpick");
             var message = ($(obj).data('status') === 'follow') ? 'Unpicked' : 'Picked';
+            $(obj).toggleClass('selected')
             $.fn.General_ShowNotification({message: message + " successfully."});                 
         },
         beforeSend: function (obj) {
@@ -29646,7 +29647,11 @@ Card.prototype.events = function()
             $().General_ShowErrorMessage({message: errorMessage});
         }
     });
-    
+
+    $('#mypicks').click(function (e) {
+        console.log('wopp woop');
+        $('.follow').toggleClass('hide');
+    });
     /************************************************************************************
      *              FOLLOW AND UNFOLLOW USER PROFILE PAGE JS
      ************************************************************************************/
