@@ -1,40 +1,52 @@
-{{ set(this, 'title', 'My Picks') }}
+{{ set(this, 'title', _Blog.getBlogTitle()) }}
 {% set networkData = _Network.getNetworkData() %}
-{% set limit = 150 %}    
-{% set userPosts = _User.getUserFeed({limit: limit, offset: 0}) %}
-{% if not userPosts %} 
-    {% set count = 'pbbt' %}
-{% else %}
-    {% set count = userPosts.Length %}
-{% endif %} 
-{{this.registerJs("Acme.cards = CardController();")}}
-<div class="userProfilePost_page">
-    <section class="container">
-        <div class="row">
-            <!-- Begin User Profile Sidebar -->
-            <div class="col-sm-12 col-xs-12">
-                <header class="sub-header">My Picks</header>
-                <div id="news-posts">
-                    <div class="section__content">
-                        <div class="row">
-                            <div id="userArticleContainer" data-total-count="{{count}}" data-offset="0">
-                               {% if userPosts | length > 0  %}
-                                        <div id="owl-thumbnails" class="owl-carousel">
-                                            {% set i = 0 %}
-                                            {% for article in userPosts %}  
-                                                {{this.render('//partials/_single-article.twig', {article: article, 'position': (i+1), containerClass: 'col-third', cardClass : 'card__news card--local', 'titleTruncateLength': 70}) | raw}}
-                                                {%  set i = i + 1 %}
-                                            {% endfor %}
-                                        </div>
-                                {% else %}
-                                    <p class="no-data ">No picks yet.</p>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
+{% set blogData      = _Blog.getBlog() %}
+{% set blogName      = blogData.title %}
+
+{% macro smartquotes(text) %}
+    {{text|replace({'/[^"]/': '&ldquo;', "/[^'']/": '&lsquo;', "'": '&rsquo;', '"': '&rdquo;'})}}
+{% endmacro %}
+
+
+{{this.registerJs("CardController();")}}
+
+{% set limit = 150 %}
+
+{% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
+{% set articles = articlesArr.articles %}
+
+
+<!-- used to index each article as we loop over throughout the template -->
+{% set articleCount = 0 %}
+
+{# {% set recentArticles = _Article.getRecentArticles({'limit': 5}) %} #}
+<styles>
+.follow{
+    display:none;
+}
+</styles>
+
+
+    <main id="main" class="site-main" role="main">
+
+        <section class="home-page-content container">
+            <div class="row header">
+                <div class="col-sm-12">
+                    <h1>My Picks</h1>
                 </div>
             </div>
-            <!-- //End User Posts -->
-        </div>
-    </section>
-</div>
+
+            <div class="row index-top">
+
+                <div class="col-sm-12 main-content">
+                    {% for i in 0..149 %}
+                        {% if articles[articleCount] %}                                                                
+                            {{this.render('partials/_single-article.twig', {article: articles[articleCount], position: (articleCount+1), containerClass: 'card-sm col-sm-4'}) | raw}}
+
+                            {% set articleCount = articleCount + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                </div><!-- .col-sm-8-->
+             </div>
+        </section><!-- .home-page-content-->
+    </main><!-- .site-main -->
