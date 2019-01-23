@@ -10050,7 +10050,7 @@ body.channel.hotspots .hotspot, body.section.hotspots .hotspot {
   margin-bottom: 45px; }
   @media screen and (max-width: 620px) {
     .card-sm {
-      margin-bottom: 15px; } }
+      margin-bottom: 35px; } }
   .card-sm a.card {
     height: 250px; }
     @media screen and (max-width: 620px) {
