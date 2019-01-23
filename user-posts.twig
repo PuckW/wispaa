@@ -3,7 +3,7 @@
 {% set limit = 150 %}    
 {% set userPosts = _User.getUserFeed({limit: limit, offset: 0}) %}
 {% if not userPosts %} 
-    {% set count = 'pbbt'}
+    {% set count = 'pbbt' %}
 {% else %}
     {% set count = userPosts.Length %}
 {% endif %} 
