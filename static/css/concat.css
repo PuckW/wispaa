@@ -7579,6 +7579,14 @@ button.followArticleBtn {
   button.followArticleBtn.selected {
     background-color: #EEEEAA; }
 
+@media screen and (max-width: 1200px) {
+  .wispaa-head {
+    font-size: 1.875rem; } }
+
+@media screen and (max-width: 767px) {
+  .wispaa-head {
+    font-size: 1.25rem; } }
+
 .card-rec a.card > article {
   display: -webkit-box;
   display: -webkit-flex;
@@ -8510,7 +8518,7 @@ ul.menu > li > ul.sub-menu.breaking-news-menu > li > ul.sub-sub-menu > li {
           .site-header .site-header-main .navbar-brand > img.main-logo {
             display: none; } }
     .site-header .site-header-main .navbar-right {
-      margin-top: 25px; }
+      margin-top: 15px; }
       @media screen and (max-width: 620px) {
         .site-header .site-header-main .navbar-right {
           margin-top: 12px; } }
@@ -9023,16 +9031,6 @@ body.channel .follow-box, body.section .follow-box {
     body.channel .follow-box, body.section .follow-box {
       text-align: left;
       padding-bottom: 20px; } }
-
-body.channel .follow, body.section .follow {
-  font-size: 0.875em;
-  margin-top: 30px;
-  padding-top: 10px;
-  height: 40px;
-  width: 180px; }
-  @media screen and (max-width: 768px) {
-    body.channel .follow, body.section .follow {
-      margin-top: 15px; } }
 
 body.channel .featured-slider, body.section .featured-slider {
   margin-bottom: 70px; }

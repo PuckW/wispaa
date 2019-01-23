@@ -278,4 +278,13 @@ button {
     }
 }
 
+.wispaa-head{
+    @media screen and (max-width:$md-break){
+        font-size: rem(30);
+    }
+    @media screen and (max-width:$sm-break-down){
+        font-size: rem(20);
+    }
+}
+
 

@@ -61,18 +61,18 @@ body.channel, body.section {
         }
     }
 
-    .follow {
-		font-size: ((14px / $font-size-base) + $font-unit);
-		margin-top:30px;
-        padding-top: 10px;
-        height:40px;
-        width:180px;
+  //   .follow {
+		// font-size: ((14px / $font-size-base) + $font-unit);
+		// margin-top:30px;
+  //       padding-top: 10px;
+  //       height:40px;
+  //       width:180px;
 
-        @media screen and (max-width: $sm-break) {
-            margin-top:15px;
-        }
+  //       @media screen and (max-width: $sm-break) {
+  //           margin-top:15px;
+  //       }
 
-    }
+  //   }
 
 
     .featured-slider{
