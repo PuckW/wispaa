@@ -2,6 +2,11 @@
 {% set networkData = _Network.getNetworkData() %}
 {% set limit = 150 %}    
 {% set userPosts = _User.getUserFeed({limit: limit, offset: 0}) %}
+{% if not userPosts %} 
+    {% set count = 'pbbt'}
+{% else %}
+    {% set count = userPosts.Length}
+{% endif %} 
 {{this.registerJs("Acme.cards = CardController();")}}
 <div class="userProfilePost_page">
     <section class="container">
@@ -12,7 +17,7 @@
                 <div id="news-posts">
                     <div class="section__content">
                         <div class="row">
-                            <div id="userArticleContainer" data-total-count="{{userPosts.Length}}" data-offset="0">
+                            <div id="userArticleContainer" data-total-count="{{count}}" data-offset="0">
                                {% if userPosts | length > 0  %}
                                         <div id="owl-thumbnails" class="owl-carousel">
                                             {% set i = 0 %}
