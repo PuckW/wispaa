@@ -5,7 +5,7 @@
 {% if not userPosts %} 
     {% set count = 'pbbt'}
 {% else %}
-    {% set count = userPosts.Length}
+    {% set count = userPosts.Length %}
 {% endif %} 
 {{this.registerJs("Acme.cards = CardController();")}}
 <div class="userProfilePost_page">
