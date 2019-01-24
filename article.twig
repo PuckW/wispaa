@@ -26,11 +26,11 @@
 {% if article.media|length > 0 %}
     {% set imgWidth = article.media[0].width %}
     {% set imgHeight = article.media[0].height %}
-    {% if imgHeight > 400  %}
-        {% set imgHeight = 400 %}
+    {% if imgHeight > 800  %}
+        {% set imgHeight = 800 %}
         {% set imgWidth = 0 %}
-    {% elseif imgwidth > 800 %}
-        {% set imgWidth = 800 %}
+    {% elseif imgwidth > 1200 %}
+        {% set imgWidth = 1200 %}
         {% set imgHeight = 0 %}
     {% endif %}
     {% set articleImg =  _Media.getMediaUrl(article.media[0], imgWidth, imgHeight, {crop: 'fill', gravity: 'auto'})  %}
