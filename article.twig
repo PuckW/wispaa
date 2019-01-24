@@ -20,12 +20,28 @@
     {% set text = 'Following -' %}
 {% endif %}
 {% set placeholder = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w=1160&h=538' %}
-{% set imgWidth = 900 %}
-{% set imgHeight = 900 %}
+
 
 {% set articleImg = false %}
 {% if article.media|length > 0 %}
-    {% set articleImg = article.media[0].path %}
+    {% set imgWidth = article.media[0].width %}
+    {% set imgHeight = article.media[0].height %}
+    {% if imgHeight > 400  %}
+        {% set imgDiff = 400 / imgHeight %}
+        {% set imgHeight = 400 %}
+        {% set imgWidth = (imgWidth * imgDiff)|round %}
+    {% elseif imgwidth > 800 %}
+        {% set imgDiff = 800 / imgWidth %}
+        {% set imgWidth = 800 %}
+        {% set imgHeight = (imgHeight * imgDiff)|round %}
+    {% endif %}
+    {% set articleImg =  _Media.getMediaUrl(article.media[0], imgWidth, imgHeight, {crop: 'fill', gravity: 'auto'})  %}
+
+{% endif %}
+
+{% if not _User.isGuest() and _User.isUserFollowing('article', article.articleId) %}
+    {% set followButtonClass = 'selected' %}
+    {% set followBtnStatus = "unfollow" %}
 {% endif %}
 
 {% set profileImg = _Media.getMediaUrl(article.createdBy['media'], 100, 100, {radius: 'max', gravity: 'face', 'crop': 'thumb', type: 'user'}) %}
@@ -33,11 +49,11 @@
     {# {{dump(article.media[0])}} #}
 
     <main id="main" class="site-main" role="main">
-
+        {{dump(articleImg,imgWidth,imgHeight)}}
         {% if articleImg %} 
 
          <section class="" style="margin-top:40px;text-align: center;">
-             <img src="{{articleImg}}" style="max-height:1000px;max-width:80%;">
+             <img src="{{articleImg}}" style="max-height:800px;max-width:80%;">
         </section><!--page-hero-->
         {% endif %}
 
