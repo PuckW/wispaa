@@ -55,7 +55,7 @@
 {% endif %}
 {% set followButtonClass = '' %}
 {% set followBtnStatus = "follow" %}  
-{% if not _User.isGuest() and _User.isUserFollowing('article', article.articleId) %}
+{% if not _User.isGuest() and _User.isUserFollowing('article', article.id) %}
     {% set followButtonClass = 'selected' %}
     {% set followBtnStatus = "unfollow" %}
 {% endif %}
@@ -72,7 +72,7 @@
             <div>
                  <button data-position="" 
                         data-social="0" 
-                        data-id="{{article.articleId}}" 
+                        data-id="{{article.id}}" 
                         data-guid="{{article.guid}}" 
                         title="" 
                         class="btnhide followArticleBtn {{followButtonClass}}" 
