@@ -7590,6 +7590,13 @@ button.followArticleBtn {
   .wispaa-head {
     font-size: 1.25rem; } }
 
+.next-button {
+  border: 1px solid black;
+  background-color: #EEEEDD;
+  font-family: "adelle-sans", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  padding: 2px 6px; }
+
 .card-rec a.card > article {
   display: -webkit-box;
   display: -webkit-flex;

@@ -6,7 +6,24 @@
 {% set blogData      = _Blog.getBlog() %}
 {% set blogName      = blogData.title %}
 
+{% set limit = 150 %}
 
+{% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
+{% set articles = articlesArr.articles %}
+{% set prevArticle = '' %}
+{% set nextArticle = '' %}
+
+{% for i in 0..articles.length %}     
+    {% if articles[i].guid == article.guid %}
+        
+        {% if i != 0 %}
+            {% set prevArticle = articles[i-1].url %}
+        {% endif %}
+        {% if articles[i+1] %}
+            {% set nextArticle = articles[i+1].url %}
+        {% endif %}
+    {% endif %}
+{% endfor %}    
 {# {{this.registerJs("ArticleController.view();")}} #}
 {# {{this.registerJs("HomeController.blog();")}} #}
 
@@ -36,7 +53,8 @@
     {% set articleImg =  _Media.getMediaUrl(article.media[0], imgWidth, imgHeight, {crop: 'fill', gravity: 'auto'})  %}
 
 {% endif %}
-
+{% set followButtonClass = '' %}
+{% set followBtnStatus = "follow" %}  
 {% if not _User.isGuest() and _User.isUserFollowing('article', article.articleId) %}
     {% set followButtonClass = 'selected' %}
     {% set followBtnStatus = "unfollow" %}
@@ -47,12 +65,36 @@
     {# {{dump(article.media[0])}} #}
 
     <main id="main" class="site-main" role="main">
-        {{dump(articleImg,imgWidth,imgHeight)}}
         {% if articleImg %} 
 
          <section class="" style="margin-top:40px;text-align: center;">
-             <img src="{{articleImg}}" style="max-height:800px;max-width:80%;">
+            <img src="{{articleImg}}" style="max-height:800px;max-width:80%;"><br />
+            <div>
+                 <button data-position="" 
+                        data-social="0" 
+                        data-id="{{article.articleId}}" 
+                        data-guid="{{article.guid}}" 
+                        title="" 
+                        class="btnhide followArticleBtn {{followButtonClass}}" 
+                        type="button" 
+                        data-status="{{followBtnStatus}}"
+                        style="margin-right:100px;">
+                        {% set pickBtn = 'Pick' %}
+                        {% if followBtnStatus == 'unfollow' %}
+                            {% set pickBtn = 'Unpick' %}
+                        {% endif %}
+                    <p style="margin-bottom:0;">{{pickBtn}}</p><span class="hide"></span>
+                </button>
+                {% if prevArticle != '' %}
+                    <a href="{{prevArticle}}" class="next-button">Prev</a>
+                {% endif %}
+                {% if nextArticle != '' %}
+                    <a href="{{nextArticle}}" class="next-button">Next</a>
+                {% endif %}
+                
+            </div>
         </section><!--page-hero-->
+        
         {% endif %}
 
 

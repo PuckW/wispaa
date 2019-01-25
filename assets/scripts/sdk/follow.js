@@ -136,7 +136,6 @@
             'onComplete': function () {}
         };
         var opts = $.extend({}, defaults, options);
-
         return this.each(function () {
             var elem = $(this);
             $(elem).click(function (e) {
