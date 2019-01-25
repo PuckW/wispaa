@@ -13,7 +13,7 @@
 {% set prevArticle = '' %}
 {% set nextArticle = '' %}
 
-{% for i in 0..articles.length %}     
+{% for i in 0..articles|length %}     
     {% if articles[i].guid == article.guid %}
         
         {% if i != 0 %}
@@ -24,7 +24,6 @@
         {% endif %}
     {% endif %}
 {% endfor %}
-{{dump(articles.length)}}    
 {# {{this.registerJs("ArticleController.view();")}} #}
 {# {{this.registerJs("HomeController.blog();")}} #}
 
