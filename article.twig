@@ -23,7 +23,8 @@
             {% set nextArticle = articles[i+1].url %}
         {% endif %}
     {% endif %}
-{% endfor %}    
+{% endfor %}
+{{dump(articles.length)}}    
 {# {{this.registerJs("ArticleController.view();")}} #}
 {# {{this.registerJs("HomeController.blog();")}} #}
 
