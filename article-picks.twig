@@ -1,0 +1,127 @@
+{% import "partials/quotes.twig" as quotes %}
+
+
+{{ set(this, 'title', article.title) }}
+{% set networkData = _Network.getNetworkData() %}
+{% set blogData      = _Blog.getBlog() %}
+{% set blogName      = blogData.title %}
+
+{% set limit = 150 %}
+
+{% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
+{% set articles = articlesArr.articles %}
+{% set prevArticle = '' %}
+{% set nextArticle = '' %}
+
+{% for i in 0..articles|length %}     
+    {% if articles[i].guid == article.guid %}
+        
+        {% for j in 0..i %}
+            {% if j < i  and _User.isUserFollowing('article', articles[j].id) %}
+                {% set prevArticle = articles[j].url %}
+            {% endif %}
+        {% endfor %}
+        {% for j in i..articles|length %}
+            {% if j > i and _User.isUserFollowing('article', articles[j].id) %}
+                {% set nextArticle = articles[j].url %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+{# {{this.registerJs("ArticleController.view();")}} #}
+{# {{this.registerJs("HomeController.blog();")}} #}
+
+{% set status = 'follow' %}
+{% set text = 'Follow +' %}
+{% set authorId = article.createdBy['id'] %}
+{% set authorGUID = article.createdBy['guid'] %}
+
+{% if not _User.isGuest() and _User.isUserFollowing('user', authorId)%}
+    {% set status = 'unfollow' %}
+    {% set text = 'Following -' %}
+{% endif %}
+{% set placeholder = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w=1160&h=538' %}
+
+
+{% set articleImg = false %}
+{% if article.media|length > 0 %}
+    {% set imgWidth = article.media[0].width %}
+    {% set imgHeight = article.media[0].height %}
+    {% if imgHeight > 800  %}
+        {% set imgHeight = 800 %}
+        {% set imgWidth = 0 %}
+    {% elseif imgwidth > 1200 %}
+        {% set imgWidth = 1200 %}
+        {% set imgHeight = 0 %}
+    {% endif %}
+    {% set articleImg =  _Media.getMediaUrl(article.media[0], imgWidth, imgHeight, {crop: 'fill', gravity: 'auto'})  %}
+
+{% endif %}
+{% set followButtonClass = '' %}
+{% set followBtnStatus = "follow" %}  
+{% if not _User.isGuest() and _User.isUserFollowing('article', article.id) %}
+    {% set followButtonClass = 'selected' %}
+    {% set followBtnStatus = "unfollow" %}
+{% endif %}
+
+{% set profileImg = _Media.getMediaUrl(article.createdBy['media'], 100, 100, {radius: 'max', gravity: 'face', 'crop': 'thumb', type: 'user'}) %}
+
+    {# {{dump(article.media[0])}} #}
+
+    <main id="main" class="site-main" role="main">
+        {% if articleImg %} 
+
+         <section class="" style="margin-top:40px;text-align: center;">
+            <img src="{{articleImg}}" style="max-height:650px;max-width:80%;"><br />
+            <div>
+                 <button data-position="" 
+                        data-social="0" 
+                        data-id="{{article.id}}" 
+                        data-guid="{{article.guid}}" 
+                        title="" 
+                        class="btnhide followArticleBtn {{followButtonClass}}" 
+                        type="button" 
+                        data-status="{{followBtnStatus}}"
+                        style="margin-right:100px;">
+                        {% set pickBtn = 'Pick' %}
+                        {% if followBtnStatus == 'unfollow' %}
+                            {% set pickBtn = 'Unpick' %}
+                        {% endif %}
+                    <p style="margin-bottom:0;">{{pickBtn}}</p><span class="hide"></span>
+                </button>
+                {% if prevArticle != '' %}
+                    <a href="{{prevArticle}}" class="next-button">Prev</a>
+                {% endif %}
+                {% if nextArticle != '' %}
+                    <a href="{{nextArticle}}" class="next-button">Next</a>
+                {% endif %}
+                
+            </div>
+        </section><!--page-hero-->
+        
+        {% endif %}
+
+
+
+
+
+
+
+        <article class="article-main">
+
+
+
+            <div class="container">
+                <h4 >
+                    {{ quotes.smarten(article.title) }}
+                </h4>
+                <div class="article_content" style="text-align: center;">
+                    <p>{{ article.content | raw }}</p>
+                </div><!-- .content-->
+                <div class="article_content" style="text-align: center;">
+                    <a href="{{networkData.defaultBlogUrl}}"><< Back to main gallery</p>
+                </div><!-- .content-->
+            </div><!--container-->
+        </article>
+    </main><!--site-main-->
+
