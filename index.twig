@@ -21,10 +21,10 @@
 
 {# {% set recentArticles = _Article.getRecentArticles({'limit': 5}) %} #}
 {% set userID = _User.getId() %}
-{% set followedpics =  _User.getUserFeed() %}
+
 
     <main id="main" class="site-main" role="main">
-    {{ _AppHelper.printArray(followedpics)}}
+    
 
         <section class="home-page-content container">
             <div class="row header">
