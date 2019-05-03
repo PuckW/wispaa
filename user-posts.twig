@@ -10,7 +10,7 @@
 
 {{this.registerJs("CardController();")}}
 
-{% set limit = 150 %}
+{% set limit = 200 %}
 
 {% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
 {% set articles = articlesArr.articles %}
@@ -39,7 +39,7 @@
             <div class="row index-top">
 
                 <div class="col-sm-12 main-content">
-                    {% for i in 0..149 %}
+                    {% for i in 0..199 %}
                         {% if articles[articleCount] %}                                                                
                             {{this.render('partials/_single-article.twig', {article: articles[articleCount], position: (articleCount+1), containerClass: 'card-sm col-sm-4'}) | raw}}
 
