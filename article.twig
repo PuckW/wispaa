@@ -108,6 +108,9 @@
 
 
             <div class="container">
+                <h4 >
+                    {{ quotes.smarten(article.title) }}
+                </h4>
                 <div class="article_content" style="text-align: center;">
                     <p>{{ article.content | raw }}</p>
                 </div><!-- .content-->

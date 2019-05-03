@@ -10079,7 +10079,17 @@ body.channel.hotspots .hotspot, body.section.hotspots .hotspot {
         height: 100%; }
         .card-sm a.card > article > figure > img {
           max-width: 100%; }
-      .card-sm a.card > article > .content {
+      .card-sm a.card > article > .content h2 {
+        font-size: 16px;
+        margin-left: 125px;
+        margin-top: 5px; }
+      .card-sm a.card > article > .content .category {
+        display: none; }
+      .card-sm a.card > article > .content .author {
+        display: none; }
+      .card-sm a.card > article > .content time {
+        display: none; }
+      .card-sm a.card > article > .content p {
         display: none; }
 
 .card-lg {

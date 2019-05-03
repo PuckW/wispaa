@@ -40,7 +40,23 @@
 
 
             > .content{
+                h2{
+                    font-size:  16px;
+                    margin-left: 125px;
+                    margin-top: 5px;
+                }
+                .category{
                     display: none;
+                }
+                .author{
+                    display: none;
+                }
+                time{
+                    display: none;
+                }
+                p {
+                    display: none;
+                }
             }
         }     
     }
