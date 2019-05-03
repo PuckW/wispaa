@@ -21,7 +21,7 @@
 
 {# {% set recentArticles = _Article.getRecentArticles({'limit': 5}) %} #}
 {% set userID = _User.getId() %}
-{% set followedpics =  _Follow.findByParams({'followerId': userID }) %}
+{% set followedpics =  _User.getUserFeed() %}
 
     <main id="main" class="site-main" role="main">
     {{ _AppHelper.printArray(followedpics)}}
